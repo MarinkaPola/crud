@@ -1,0 +1,25 @@
+<div>
+  <button [hidden]="add" (click)="addOwner()">add Owner</button>
+</div>
+<table class="table table-striped" id="owners">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">FirstName</th>
+    <th scope="col">LastName</th>
+    <th scope="col">MiddleName</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr  *ngFor="let owner of owners" class="table-primary">
+    <td>{{owner.id}}</td>
+    <td>{{owner.FirstName}}</td>
+    <td>{{owner.LastName}}</td>
+    <td>{{owner.MiddleName}}</td>
+    <!--<td *ngIf="owner?.cars.length!==0">{{owner.cars}}</td>-->
+    <td><button (click)="showOwner(owner)">Show owner</button></td>
+    <td><button (click)="OwnerEdit(owner)">Update</button></td>
+    <td><button (click)="removeOwner(owner)">Delete</button></td>
+  </tr>
+  </tbody>
+</table>

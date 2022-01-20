@@ -1,0 +1,150 @@
+<div style="margin: 16px 50px" *ngIf="owner" >
+<form [formGroup]="form" (submit)="submit()">
+    <div class="mb-3">
+      <input type="text" class="form-control" id="id" value="{{owner.id}}"  hidden formControlName="id">
+    </div>
+  <div class="form-group">
+    <div class="mb-3 form-group" [ngClass]="{invalid: form.get('FirstName')?.touched && form.get('FirstName')?.invalid}">
+      <label for="FirstName" class="form-label">FirstName</label>
+      <input type="text" class="form-control" id="FirstName" value="{{owner.FirstName}}" formControlName="FirstName">
+      <div *ngIf="form.get('FirstName')?.touched && form.get('FirstName')?.invalid" class="validation">
+        <div class="alert alert-warning" role="alert" *ngIf="form.get('FirstName')?.errors?.required">
+          you have not entered FirstName
+        </div>
+        <div class="alert alert-warning" role="alert" *ngIf="form.get('FirstName')?.errors?.minlength">
+          minimum length 3 characters
+        </div>
+        <div class="alert alert-warning" role="alert" *ngIf="form.get('FirstName')?.errors?.maxlength ">
+          maximum length 20 characters
+        </div>
+      </div>
+      </div>
+    </div>
+  <div class="mb-3 form-group" [ngClass]="{invalid: form.get('LastName')?.touched && form.get('LastName')?.invalid}">
+      <label for="LastName" class="form-label">LastName</label>
+      <input type="text" class="form-control" id="LastName" value="{{owner.LastName}}" formControlName="LastName">
+    <div *ngIf="form.get('LastName')?.touched && form.get('LastName')?.invalid" class="validation">
+      <div class="alert alert-warning" role="alert" *ngIf="form.get('LastName')?.errors?.required">
+        you have not entered LastName
+      </div>
+      <div class="alert alert-warning" role="alert" *ngIf="form.get('LastName')?.errors?.minlength">
+        minimum length 3 characters
+      </div>
+      <div class="alert alert-warning" role="alert" *ngIf="form.get('LastName')?.errors?.maxlength ">
+        maximum length 20 characters
+      </div>
+    </div>
+    </div>
+  <div class="mb-3 form-group" [ngClass]="{invalid: form.get('MiddleName')?.touched && form.get('MiddleName')?.invalid}">
+      <label for="MiddleName" class="form-label">MiddleName</label>
+      <input type="text" class="form-control" id="MiddleName" value="{{owner.MiddleName}}" formControlName="MiddleName">
+    <div *ngIf="form.get('MiddleName')?.touched && form.get('MiddleName')?.invalid" class="validation">
+      <div class="alert alert-warning" role="alert" *ngIf="form.get('MiddleName')?.errors?.required">
+        you have not entered MiddleName
+      </div>
+      <div class="alert alert-warning" role="alert" *ngIf="form.get('MiddleName')?.errors?.minlength">
+        minimum length 3 characters
+      </div>
+      <div class="alert alert-warning" role="alert" *ngIf="form.get('MiddleName')?.errors?.maxlength ">
+        maximum length 20 characters
+      </div>
+    </div>
+    </div>
+
+<h2 >Car</h2>
+    <table class="table table-primary" id="cars" *ngIf="owner.cars && owner.cars?.length!==0">
+      <thead>
+      <tr>
+        <th scope="col">number</th>
+        <th scope="col">brand</th>
+        <th scope="col">model</th>
+        <th scope="col">year</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr  *ngFor="let car of owner.cars" class="table-secondary">
+        <td>{{car.number}}</td>
+        <td>{{car.brand}}</td>
+        <td>{{car.model}}</td>
+        <td>{{car.year}}</td>
+        <td><button (click)="removeCar(car)">Delete</button></td>
+      </tr>
+      </tbody>
+    </table>
+
+
+
+        <div style="display: flex; flex-direction: row"  *ngIf="hidden == false">
+          <div class="mb-3 form-group" [ngClass]="{invalid: form.get('number')?.touched && form.get('number')?.invalid}">
+            <!--<label for="number" class="form-label">number</label>-->
+            <input type="text" class="form-control" id="number" value="" formControlName="number">
+            <div *ngIf="form.get('number')?.touched && form.get('number')?.invalid" class="validation">
+              <div class="alert alert-warning" role="alert" *ngIf="form.get('number')?.errors?.required">
+                you have not entered number
+              </div>
+              <div class="alert alert-warning" role="alert" *ngIf="form.get('number')?.errors?.minlength">
+                minimum length 8 characters
+              </div>
+              <div class="alert alert-warning" role="alert" *ngIf="form.get('number')?.errors?.maxlength ">
+                maximum length 8 characters
+              </div>
+              <div class="alert alert-warning" role="alert" *ngIf="form.get('number')?.errors?.pattern">
+                number must be "aaXXXXaa"
+              </div>
+            </div>
+          </div>
+          <div class="mb-3 form-group" [ngClass]="{invalid: form.get('brand')?.touched && form.get('brand')?.invalid}">
+           <!-- <label for="brand" class="form-label">brand</label>-->
+            <input type="text" class="form-control" id="brand" value="" formControlName="brand">
+            <div *ngIf="form.get('brand')?.touched && form.get('brand')?.invalid" class="validation">
+              <div class="alert alert-warning" role="alert" *ngIf="form.get('brand')?.errors?.required">
+                you have not entered brand
+              </div>
+              <div class="alert alert-warning" role="alert" *ngIf="form.get('brand')?.errors?.minlength">
+                minimum length 3 characters
+              </div>
+              <div class="alert alert-warning" role="alert" *ngIf="form.get('brand')?.errors?.maxlength ">
+                maximum length 10 characters
+              </div>
+            </div>
+          </div>
+          <div class="mb-3 form-group" [ngClass]="{invalid: form.get('model')?.touched && form.get('model')?.invalid}">
+            <!--<label for="model" class="form-label">model</label>-->
+            <input type="text" class="form-control" id="model" value="" formControlName="model">
+            <div *ngIf="form.get('model')?.touched && form.get('model')?.invalid" class="validation">
+              <div class="alert alert-warning" role="alert" *ngIf="form.get('model')?.errors?.required">
+                you have not entered model
+              </div>
+              <div class="alert alert-warning" role="alert" *ngIf="form.get('model')?.errors?.minlength">
+                minimum length 5 characters
+              </div>
+              <div class="alert alert-warning" role="alert" *ngIf="form.get('model')?.errors?.maxlength ">
+                maximum length 10 characters
+              </div>
+            </div>
+          </div>
+          <div class="mb-3 form-group" [ngClass]="{invalid: form.get('year')?.touched && form.get('year')?.invalid}">
+           <!-- <label for="year" class="form-label">year</label>-->
+            <input type="text" class="form-control" id="year" value="" formControlName="year">
+            <div *ngIf="form.get('year')?.touched && form.get('year')?.invalid" class="validation">
+              <div class="alert alert-warning" role="alert" *ngIf="form.get('year')?.errors?.required">
+                you have not entered year
+              </div>
+              <div class="alert alert-warning" role="alert" *ngIf="form.get('year')?.errors?.minlength">
+                minimum length 4 characters
+              </div>
+              <div class="alert alert-warning" role="alert" *ngIf="form.get('year')?.errors?.maxlength ">
+                maximum length 4 characters
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-success" (click)="addCar($event)">add car</button>
+
+
+    <button  type="submit" class="btn btn-primary" [disabled]="form.invalid || submitted">save</button>
+</form>
+</div>
+<button type="button" class="btn btn-danger" style="margin-left: 50px" (click)="back()">back</button>
+
