@@ -8,6 +8,7 @@
     <th scope="col">FirstName</th>
     <th scope="col">LastName</th>
     <th scope="col">MiddleName</th>
+    <th scope="col">Count</th>
   </tr>
   </thead>
   <tbody>
@@ -16,6 +17,7 @@
     <td>{{owner.FirstName}}</td>
     <td>{{owner.LastName}}</td>
     <td>{{owner.MiddleName}}</td>
+    <td>{{owner.cars?.length}}</td>
     <!--<td *ngIf="owner?.cars.length!==0">{{owner.cars}}</td>-->
     <td><button (click)="showOwner(owner)">Show owner</button></td>
     <td><button (click)="OwnerEdit(owner)">Update</button></td>
